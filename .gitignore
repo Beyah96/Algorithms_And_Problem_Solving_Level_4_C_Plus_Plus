@@ -1,0 +1,55 @@
+# Fichiers binaires générés (Windows)
+*.exe
+*.dll
+*.obj
+*.pdb
+*.ilk
+*.idb
+*.lib
+*.exp
+*.o
+
+# Répertoires de build Visual Studio
+Debug/
+Release/
+x64/
+x86/
+
+# Répertoires de build pour CMake, Makefile, ou autres outils
+build/
+out/
+bin/
+
+# Fichiers spécifiques à Visual Studio
+.vscode/
+# Dossiers spécifiques à Visual Studio
+.vs/
+
+*.sln
+*.vcxproj
+*.vcxproj.user
+*.vcxproj.filters
+*.suo
+*.user
+*.userosscache
+*.ncb
+*.sdf
+*.opensdf
+*.cache
+*.sln.docstates
+
+# Fichiers de log et de rapports
+*.log
+
+# Fichiers temporaires
+*.tmp
+*.temp
+
+# Ignorer tous les dossiers générés automatiquement dans n'importe quel sous-dossier
+**/Debug/
+**/Release/
+**/x64/
+**/x86/
+**/build/
+**/bin/
+**/out/
