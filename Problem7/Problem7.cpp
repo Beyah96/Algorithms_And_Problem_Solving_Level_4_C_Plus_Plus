@@ -6,8 +6,6 @@
 
 using namespace std;
 
-vector <string> vDays{ "Sunday", "Monday", "Tuesday", "Wednesday", "Thurday", "Friday", "Saturday"};
-
 short ReadNumber(string Message) {
 	short Number;
 	do {
@@ -17,9 +15,9 @@ short ReadNumber(string Message) {
 	return Number;
 }
 
-
 string GetDayName(short DayIndex) {
-	return vDays[DayIndex];
+	string Days[7] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thurday", "Friday", "Saturday" };
+	return Days[DayIndex];
 }
 
 short GetDayOrder(short Day, short Month, short Year) {
@@ -40,7 +38,6 @@ void PrintNameOfDay() {
 	cout << "Day Order : " << DayOrder << endl;
 	cout << "Day Name  : " << DayName;
 }
-
 
 int main() {
 	PrintNameOfDay();
