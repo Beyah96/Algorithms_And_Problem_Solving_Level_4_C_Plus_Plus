@@ -65,11 +65,10 @@ void PrintMonthCalender(sDay Date) {
 	PrintMonthCalenderHeader(Date.Month);
 	PrintMonthCalenderContent(NumberOfDaysPerMonth, DayOrder);
 }
-// TODo : I have to fixe the problem in the function bellow, if i pour Month <= in the for loop it makes mistakes and the same if i don't put it
 short CountDaysFromFirstJanuary(sDay Date) {
-
 	short NumberOfDaysFromFirstJanuary = 0;
-	for (int Month = 1; Month < Date.Month; Month++) {
+	short TempMonth = Date.Month;
+	for (int Month = 1; Month < TempMonth; Month++) {
 		Date.Month = Month;
 		NumberOfDaysFromFirstJanuary += GetNumberOfDaysPerMonth(Date);
 	}
@@ -106,8 +105,8 @@ sDay FindDate(short DayOrderInYear, sDay Date) {
 }
 
 void ConvertBackDate(sDay Date, short DayOrerInYear) {
-	sDay stSearchedDate = FindDate(DayOrerInYear, Date);
-	printf("Date for [%d] is :  %d/%d/%d", DayOrerInYear, stSearchedDate.Day, stSearchedDate.Month, Date.Year);
+	Date = FindDate(DayOrerInYear, Date);
+	printf("Date for [%d] is :  %d/%d/%d", DayOrerInYear, Date.Day, Date.Month, Date.Year);
 }
 
 short GetNumberOfDaysPerYear(sDay Date) {
@@ -195,9 +194,8 @@ sDay IncreaseDateByOne(sDay Date) {
 			Date.Month = 1;
 			Date.Year++;
 		}
-		else {
+		else 
 			Date.Month++;
-		}
 	}
 	else
 		Date.Day++;
@@ -209,32 +207,25 @@ short CalculateDifferenceSameYear(sDay DateOne, sDay DateTwo) {
 	short Temp = 0;
 	sDay stTemp;
 	if (DateOne.Year == DateTwo.Year)
-		Temp = CountDaysFromFirstJanuary(DateOne) - CountDaysFromFirstJanuary(DateTwo);
+		return CountDaysFromFirstJanuary(DateOne) - CountDaysFromFirstJanuary(DateTwo);
 	else {
-		for (int i = DateTwo.Year + 1; i < DateOne.Year; i++){
-			stTemp.Day = 31;
-			stTemp.Month = 12;
-			stTemp.Year = i;
+		for (int Year = DateTwo.Year + 1; Year < DateOne.Year; Year++){
+			stTemp.Year = Year;
 			Temp += GetNumberOfDaysPerYear(stTemp);
 		}
-		Temp += GetNumberOfDaysPerYear(DateOne) - CountDaysFromFirstJanuary(DateTwo) + GetNumberOfDaysPerMonth(DateOne);
+ 		return Temp + GetNumberOfDaysPerYear(DateTwo) + CountDaysFromFirstJanuary(DateOne) - CountDaysFromFirstJanuary(DateTwo);
 	}
-	return Temp;
 }
 
-short DifferenceBetweenDateOneAndDateTwo(sDay DateOne, sDay DateTwo) {
-	if (isDateOneBeforeDateTwo(DateOne, DateTwo))
-		return CalculateDifferenceSameYear(DateOne, DateTwo);
-	else
-		return CalculateDifferenceSameYear(DateTwo, DateOne);
+short DifferenceBetweenDateOneAndDateTwo(sDay DateOne, sDay DateTwo, bool IncludeEndDay = false) {
+	short Difference = (isDateOneBeforeDateTwo(DateOne, DateTwo)) ? CalculateDifferenceSameYear(DateOne, DateTwo) : CalculateDifferenceSameYear(DateTwo, DateOne);
+
+	return Difference + (int)IncludeEndDay;
 }
 
 int main() {
 	sDay DateOne = ReadFullDate();
-	/*sDay DateTwo = ReadFullDate();
-	cout << "Difference is  : " << DifferenceBetweenDateOneAndDateTwo(DateOne, DateTwo) - 1<< "day (s)";
-	cout << "Difference (including the end day) is  : " << DifferenceBetweenDateOneAndDateTwo(DateOne, DateTwo) << "day (s)";
-	*/
-	cout << CountDaysFromFirstJanuary(DateOne);
+	sDay DateTwo = ReadFullDate();
+	cout << DifferenceBetweenDateOneAndDateTwo(DateOne, DateTwo, true);
 	return 0;
 }
