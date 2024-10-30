@@ -249,11 +249,6 @@ sDay IncreaseDateByOneMonth(sDay Date) {
 	return Date;
 }
 
-//sDay IncreaseDateByXMonth(short Months, sDay Date) {
-//	for (short Month = 1; Month <= Months; Month++)
-//		Date = IncreaseDateByOneMonth(Date);
-//	return Date;
-//}
 
 sDay IncreaseDateByXMonths(short Months, sDay Date) {
 	for (short Month = 1; Month <= Months; Month++)
