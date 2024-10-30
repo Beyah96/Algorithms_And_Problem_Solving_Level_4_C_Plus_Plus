@@ -257,20 +257,18 @@ sDay DecreaseDateByXWeeks(short Weeks, sDay Date) {
 }
 
 sDay DecreaseDateByOneMonth(sDay Date) {
+	short NumberOfDaysPerMonth;
 	if (Date.Month == 1) {
 		Date.Month = 12;
 		Date.Year--;
 	}
 	else
 		Date.Month--;
+	NumberOfDaysPerMonth = GetNumberOfDaysPerMonth(Date);
+	if (Date.Month > NumberOfDaysPerMonth)
+		Date.Month = NumberOfDaysPerMonth;
 	return Date;
 }
-
-//sDay DecreaseDateByXMonth(short Months, sDay Date) {
-//	for (short Month = 1; Month <= Months; Month++)
-//		Date = DecreaseDateByOneMonth(Date);
-//	return Date;
-//}
 
 sDay DecreaseDateByXMonths(short Months, sDay Date) {
 	for (short Month = 1; Month <= Months; Month++)
