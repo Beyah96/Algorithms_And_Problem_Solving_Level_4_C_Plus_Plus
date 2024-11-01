@@ -9,9 +9,6 @@ struct sDate {
 	short Day, Month, Year;
 };
 
-struct sPeriod {
-	sDate DateOne, DateTwo;
-};
 short ReadNumber(string Message) {
 	short Number;
 	do {
@@ -180,7 +177,7 @@ sDate ReadFullDate() {
 }
 
 bool isDateOneBeforeDateTwo(sDate DateOne, sDate DateTwo) {
-	return (DateOne.Year < DateTwo.Year) ? true : (DateOne.Year > DateTwo.Year) ? false : (DateOne.Month < DateTwo.Month) ? true : (DateOne.Month > DateTwo.Month) ? false : (DateOne.Day < DateTwo.Day);
+	return (DateOne.Year < DateTwo.Year) ? true : (DateOne.Year > DateTwo.Year) ? false : (DateOne.Month < DateTwo.Month) ? true : (DateOne.Month > DateTwo.Month) ? false : (DateOne.Day > DateTwo.Day);
 }
 
 bool isDateOneEqualDateTwo(sDate DateOne, sDate DateTwo) {
@@ -371,44 +368,17 @@ sDate GetVacationReturnDate(sDate DateFrom) {
 	return DateFrom;
 }
 
-enum enDateCompare{ After = -1, Same = 0, Before = 1};
-
 short CompareTwoDates(sDate DateOne, sDate DateTwo) {
 	short result;
 	(isDateOneAfterDateTwo(DateOne, DateTwo)) ? (result = 1) : (isDateOneEqualDateTwo(DateOne, DateTwo) ? result = 0 : result = -1);
 	return result;
 }
 
-enDateCompare CompareTwoDatesWithEnums(sDate DateOne, sDate DateTwo){
-	enDateCompare result;
-	(isDateOneAfterDateTwo(DateOne, DateTwo)) ? (result = enDateCompare::Before) : (isDateOneEqualDateTwo(DateOne, DateTwo) ? result = enDateCompare::Same : result = After);
-	return result;
-}
 
-sPeriod ReadPeriod() {
-	sPeriod Period;
-	cout << endl << "Priod's Date One : " << endl;
-	Period.DateOne = ReadFullDate();
-	do {
-	cout << endl << "Priod's Date Two : " << endl;
-		Period.DateTwo = ReadFullDate();
-	} while (isDateOneBeforeDateTwo(Period.DateTwo, Period.DateOne));
-	return Period;
-}
-
-
-bool isPeriodsOverlap(sPeriod PeriodOne, sPeriod PeriodTwo) {
-	return ((CompareTwoDates(PeriodOne.DateOne, PeriodTwo.DateTwo) != 1) && (CompareTwoDates(PeriodOne.DateTwo, PeriodTwo.DateOne) != -1));
-}
-
-bool isPeriodsOverlapSecondVersion(sPeriod PeriodOne, sPeriod PeriodTwo) {
-	return ((CompareTwoDates(PeriodOne.DateOne, PeriodTwo.DateTwo) == enDateCompare::After) || (CompareTwoDates(PeriodOne.DateTwo, PeriodTwo.DateOne) == enDateCompare::Before));
-}
 int main() {
-	cout << endl << "Period one : " << endl;
-	sPeriod PeriodOne = ReadPeriod();
-	cout << endl << "Period Two : " << endl;
-	sPeriod PeriodTwo = ReadPeriod();
-	(isPeriodsOverlapSecondVersion(PeriodOne, PeriodTwo)) ? (cout << "Yes, Periods overlap .") : (cout << "No, Periods do not overlap .");
+	cout << "Vacation starts : " << endl;
+	sDate DateOne = ReadFullDate();
+	sDate DateTwo = ReadFullDate();
+	cout << "Compare result : " << CompareTwoDates(DateOne, DateTwo);
 	return 0;
 }
