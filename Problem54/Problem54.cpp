@@ -343,12 +343,12 @@ short DaysUntilTheEndOfYear(sDate Date) {
 
 short GetActualVacationDays(sDate DateFrom, sDate DateTo) {
 	short Difference = DifferenceBetweenDateOneAndDateTwo(DateTo, DateFrom);
-	short HowManyDaysUntilEndOfWeek = DaysUntilTheEndOfWeek(DateFrom);
-	HowManyDaysUntilEndOfWeek = (HowManyDaysUntilEndOfWeek > 2) ? (HowManyDaysUntilEndOfWeek - 2) : 0;
+	short HowManyDaysUntilEndOfWeek = DaysUntilTheEndOfWeek(DateFrom) + 1;
 	short NumberOfWeeks = (Difference - HowManyDaysUntilEndOfWeek) / 7;
-	short Remainder = (Difference - HowManyDaysUntilEndOfWeek) % 7;
-	Remainder = (Remainder > 5)? 5 : Remainder;
-	return HowManyDaysUntilEndOfWeek + NumberOfWeeks * 5 + Remainder ;
+	short Remainder = (NumberOfWeeks > 0) ? ((Difference - HowManyDaysUntilEndOfWeek) % 7) : 0;
+	HowManyDaysUntilEndOfWeek = (HowManyDaysUntilEndOfWeek > 2) ? (HowManyDaysUntilEndOfWeek - 2) : 0;
+	Remainder = (Remainder > 5) ? 5 : Remainder;
+	return HowManyDaysUntilEndOfWeek + NumberOfWeeks * 5 + Remainder;
 }
 
 int main() {
@@ -361,3 +361,4 @@ int main() {
 	cout << endl << "Actual vacation days is : " << GetActualVacationDays(DateFrom, DateTo);
 	return 0;
 }
+
