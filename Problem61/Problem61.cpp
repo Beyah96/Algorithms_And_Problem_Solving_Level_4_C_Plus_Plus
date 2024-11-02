@@ -416,7 +416,7 @@ bool isDateWithinPeriodSecondVersion(sPeriod Period, sDate Date) {
 }
 
 short CountOverlapDays(sPeriod PeriodOne, sPeriod PeriodTwo) {
-	if (!isPeriodsOverlapSecondVersion(PeriodOne, PeriodTwo))
+	if (!isPeriodsOverlapSecondVersion(PeriodOne, PeriodTwo)) 
 		return 0;
 	short PeriodOneLength = CalculatePeriodeLength(PeriodOne);
 	short PeriodTwoLength = CalculatePeriodeLength(PeriodTwo);
@@ -428,7 +428,7 @@ short CountOverlapDays(sPeriod PeriodOne, sPeriod PeriodTwo) {
 			PeriodOne.DateOne = IncreaseDateByOne(PeriodOne.DateOne);
 		}
 	}
-	else
+	else 
 		while (isDateOneBeforeDateTwo(PeriodTwo.DateOne, PeriodTwo.DateTwo)) {
 			if (isDateWithinPeriod(PeriodOne, PeriodTwo.DateOne))
 				OverlapDays++;
