@@ -494,8 +494,9 @@ void PrintMainMenueScreen() {
 	cout << setw(3) << "[3] Delete client." << endl;
 	cout << setw(3) << "[4] Update client info." << endl;
 	cout << setw(3) << "[5] Find client." << endl;
-	cout << setw(3) << "[7] Transactions" << endl;
-	cout << setw(3) << "[6] Exit" << endl;
+	cout << setw(3) << "[6] Transactions." << endl;
+	cout << setw(3) << "[7] Manage Users" << endl;
+	cout << setw(3) << "[8] Logout." << endl;
 	cout << "======================================" << endl << endl;
 
 	PerformingMainMenueOption((enMainMenuOptions)ReadOption(1, 7));
