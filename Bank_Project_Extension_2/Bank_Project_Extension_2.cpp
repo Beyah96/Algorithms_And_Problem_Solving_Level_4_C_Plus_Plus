@@ -481,6 +481,9 @@ void PerformingMainMenueOption(enMainMenuOptions MainMenuOption) {
 		GoBackToMainMenuScreen();
 }
 
+void Login() {
+
+}
 
 void PrintMainMenueScreen() {
 	system("cls");
@@ -503,7 +506,7 @@ void PrintMainMenueScreen() {
 }
 
 int main() {
-	PrintMainMenueScreen();
+	Login();
 	system("pause>0");
 	return 0;
 }
